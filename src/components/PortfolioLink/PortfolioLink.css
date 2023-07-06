@@ -1,0 +1,47 @@
+.portfolio-link {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+  transition: opacity .2s ease-in;
+}
+
+.portfolio-link:hover {
+  opacity: .7;
+}
+
+.portfolio-link__text {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;
+  letter-spacing: -0.04em;
+  color: #000;
+}
+
+.portfolio-link__icon {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 60px;
+  color: #000;
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio-link__text {
+    font-size: 28px;
+  }
+  
+  .portfolio-link__icon {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .portfolio-link__text {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  
+  .portfolio-link__icon {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}

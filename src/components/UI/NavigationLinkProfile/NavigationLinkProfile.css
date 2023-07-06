@@ -1,0 +1,20 @@
+.navigation-link-profile {
+  background: url(../../../images/button-profile.svg) no-repeat;
+  background-size: 12px 14px;
+  background-position: top 7px left 12px;
+  text-decoration: none;
+  max-width: 100px;
+  max-height: 32px;
+  border: 2px solid rgba(170, 170, 170, .2);
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #000000;
+  margin: 0;
+  padding: 6px 11px 6px 30px;
+}
+
+.navigation-link-profile:hover {
+  opacity: .8;
+}

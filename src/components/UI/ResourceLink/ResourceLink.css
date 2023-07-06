@@ -1,0 +1,30 @@
+.resource-link {
+  text-decoration: none;
+  transition: opacity .2s ease-in;
+}
+
+.resource-link:hover {
+  opacity: .7;
+}
+
+.resource-link_place_about-me {
+  display: inline-block;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000;
+}
+
+.resource-link_place_footer {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+}
+
+@media screen and (max-width: 414px) {
+  .resource-link_place_footer {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

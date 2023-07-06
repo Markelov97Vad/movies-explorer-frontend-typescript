@@ -1,0 +1,40 @@
+.navigation-link{
+  text-decoration: none;
+  color: #000000;
+  transition: opacity .2s ease-in;
+}
+
+.navigation-link:hover {
+  opacity: .7;
+}
+
+.navigation-link_menu-active {
+  border-bottom: 2px solid #000000;
+  padding-bottom: 4px;
+  cursor: default;
+}
+
+.navigation-link_menu-active:hover {
+  opacity: 1;
+}
+
+.navigation-link_header-active:hover {
+  opacity: 1;
+}
+
+.navigation-link_place_header {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.navigation-link_header-active {
+  font-weight: 500;
+  cursor: default;
+}
+
+.navigation-link_place_menu {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+}
