@@ -1,0 +1,39 @@
+.sign-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  max-height: 413px;
+  row-gap: 15px;
+}
+
+.sign-form__control-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-form__span {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #A0A0A0;
+  align-self: center;
+  margin-top: 17px; 
+}
+
+.sign-form__link {
+  text-decoration: none;
+  color: #3456F3;
+  margin-left: 6px;
+}
+
+@media screen and (max-width: 414px) {
+  .sign-form {
+    max-height: 498px;
+  }
+
+  .sign-form__span {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

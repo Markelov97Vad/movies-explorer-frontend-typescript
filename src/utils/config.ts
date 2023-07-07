@@ -25,3 +25,13 @@ export const linksList: {
   text: 'Одностраничное приложение',
   link: 'https://mesto.marsello.nomoredomains.monster/'
 }];
+
+export const loadingMessage: {
+  signup: string;
+  signin: string;
+  profile: string
+} = { 
+  signup: 'Регистрация..', 
+  signin: 'Вход..' ,
+  profile: 'Сохранение..'
+};

@@ -3,6 +3,9 @@ import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/currentUserContext';
 import Main from '../pages/Main/Main';
+import { mainApi } from '../../utils/MainApi';
+import SignUp from '../SignUp/SignUp';
+import { IObjectValues } from '../../hooks/useFormValid';
 
 export type CurrentUser = {
   email: string;
@@ -11,48 +14,24 @@ export type CurrentUser = {
 }
 
 function App() {
-  const [loggetIn, setLoggetIn] = useState(false);
+  const [isAppLoaded, setIsAppLoaded] = useState<boolean>(false);
+  const [loggetIn, setLoggetIn] = useState<boolean>(false);
   const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
+  const [message, setMessage] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(false);
 
-
-  // const [currentUser, setCurrentUser] = useState<CurrentUser>({
-  //   email: '',
-  //   password: '',
-  //   _id: '',
-  // });
-  // const [loggetIn, serLoggetIn] = useState<boolean>(false)
-
-  // const handleSignUp = ( props: UserData) => {
-  //   return mainApi
-  //     .register(props)
-  //     // .then(() => handleAuthorize(inputValue))
-  //     .catch((err) => {
-  //       if (err === CONFLICT_CODE) {
-  //         // setMessage(UNAUTHORIZED_ERROR_EMAIL_MESSAGE)
-  //       }
-  //       if (err === SERVER_ERROR_CODE) {
-  //         // setMessage(SERVER_ERROR_SIGNUP_MESSAGE)
-  //       }
-  //       // setIsLoading(false)
-  //     })
-  //     // .finally(() => setIsLoading(false));
-  // }
-
-  // const handleSignIn = (props: UserData) => {
-  //   return mainApi
-  //     .authorize(props)
-  //     .then((res: UserData )=> {
-  //       setCurrentUser(res)
-  //     })
-  // }
-
+  const handleSignUp = (inputValues: IObjectValues) => {
+    setIsLoading(true)
+    // mainApi.register()
+  }
 
   return (
     
-    <div className="App">
+    <div className="root">
       <CurrentUserContext.Provider value={{ loggetIn, currentUser }}>
         <Routes>
           <Route path='/' element={ <Main /> }/>
+          <Route path='/signup' element={<SignUp onRegistration={handleSignUp}  message={message} isLoading={isLoading}/>} />
         </Routes>
       </CurrentUserContext.Provider>
     </div>
