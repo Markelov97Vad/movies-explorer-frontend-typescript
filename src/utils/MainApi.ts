@@ -1,3 +1,5 @@
+import { IObjectValues } from "../hooks/useFormValid";
+
 export const MAIN_API_URL = 'http://localhost:3000';
 
 interface IConfigApi {
@@ -7,7 +9,7 @@ interface IConfigApi {
   }
 }
 
-type RequestOptions = RequestInit & { json?: unknown; csrfToken?: string; prefixUrl?: string }
+// type RequestOptions = RequestInit & { json?: unknown; csrfToken?: string; prefixUrl?: string }
 
 
 export type UserData = {
@@ -35,7 +37,7 @@ class MainApi {
   //   }
 
   // register({ name, email, password } props: UserData) {
-  register({ name , email, password }: UserData): Promise<Response> {
+  register({ name , email, password } : IObjectValues): Promise<Response> {
     return fetch(`${this._url}/signup`, {
       method: 'POST',
       headers: this._headers,
@@ -52,7 +54,7 @@ class MainApi {
     .catch(err => console.log(err))
   }
 
-  authorize( {email, password}: UserData): Promise<Response> {
+  authorize( {email, password}: IObjectValues): Promise<Response> {
     return fetch(`${this._url}/signin`, {
       method: 'POST',
       credentials: 'include',
@@ -60,6 +62,21 @@ class MainApi {
       body: JSON.stringify({ email, password })
     })
     // .then(res => this._checkResponse(res));
+    .then( res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(res.status)
+      }
+    })
+    .catch(err => console.log(err))
+  }
+
+  checkToken() {
+    return fetch(`${this._url}/users/me`, {
+      method: 'GET',
+      credentials: 'include'
+    })
     .then( res => {
       if (res.ok) {
         return res.json()

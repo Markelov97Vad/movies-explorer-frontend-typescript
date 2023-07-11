@@ -5,6 +5,7 @@ import Sign from "../Sign/Sign";
 import SignTitle from "../SignTitle/SignTitle";
 import SignForm from "../SignForm/SignForm";
 import { IObjectValues } from "../../hooks/useFormValid";
+import { FormType } from "../Types/FormType";
 
 type SignUpProps = {
   onRegistration: (inputValues: IObjectValues) => void;

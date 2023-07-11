@@ -1,14 +1,22 @@
-import { ChangeEvent, FC, useCallback, useLayoutEffect, useRef, useState } from "react";
+import { ChangeEvent, useCallback, useLayoutEffect, useRef, useState } from "react";
 import { validationConfig, validationConfigKeyProps } from "../utils/validation";
 
 export type IObjectValues = {
-  [index: string]: string
+  // [index: string]: string
+  name?: string;
+  email?: string;
+  password?: string;
+  // ckeckbox: ?
 }
 
-function useFormValid(values = {}) {
-  const [inputValues, setInputValues] = useState<IObjectValues>(values);
-  const [checkboxValues, setCheckboxValues] = useState<IObjectValues>({})
-  const [errorMessages, setErrorMessages] = useState<IObjectValues>({});
+type ErrorMessageType = {
+  [index: string]: string;
+}
+
+function useFormValid() {
+  const [inputValues, setInputValues] = useState<IObjectValues | null>(null);
+  const [checkboxValues, setCheckboxValues] = useState<IObjectValues | null>(null)
+  const [errorMessages, setErrorMessages] = useState<ErrorMessageType>({});
   const [formIsValid, setFormIsValid] = useState<boolean>(false);
   const formRef = useRef<HTMLFormElement | null>(null);
 
@@ -25,14 +33,19 @@ function useFormValid(values = {}) {
 
   const handleToggleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
-    setCheckboxValues({ ...values, [name]: checked })
+    setCheckboxValues(current => ({ 
+      ...current, 
+      [name]: checked,
+    }));
   }
 
-  const resetFormValues = useCallback((newValues = {}, newError = {}, newIsValid = false) => {
+  const resetFormValues = useCallback((newValues = {}, newError = {} , newIsValid = true) => {
     setInputValues(newValues);
     setCheckboxValues(newValues)
     setErrorMessages(newError);
     setFormIsValid(newIsValid);
+    // console.log('newIsValid',newIsValid);
+    
   }, [setInputValues, setErrorMessages, setFormIsValid]);
 
 
@@ -45,40 +58,27 @@ function useFormValid(values = {}) {
 
   function handleDefaultValidation(name: string, validationMessage: string) {
     const isValid = formRef.current?.checkValidity();
-
+    // console.log('isValid!',isValid);
     handleErrorMessage(name, validationMessage)
     // оператор утверждения, что значение не равно null
     setFormIsValid(isValid!);
   }
-  function nas(name: string, message: string) {
-    handleErrorMessage(name, message)
-  }
-  function vas(name: validationConfigKeyProps, value: string) {
-    handleCustomValidation(name, value)
-  }
 
-  // interface Iprops {
-  //   name : validationConfigKeyProps | string;
-  //   value: string;
-  // }
-
-  // interface lal {
-  //   name: validationConfigKeyProps
-  // }
   const handleCustomValidation = (name: validationConfigKeyProps, value: string) => {
+    // console.debug("name", name)
     const { pattern, validationError, emptyError } = validationConfig[name];
 
     const match = pattern.test(value);
     const message = !value ? emptyError : match ? '' : validationError;
     // неправельный тип
-    // const nameType: string = name as unknown as string;
-    // handleErrorMessage(nameType, message);
-    nas(name, message)
+    handleErrorMessage(name, message);
   }
 
   function handleSaveFormRef(evt: ChangeEvent<HTMLInputElement>) {
     // оператор логического нулевого присваивани, присваивает значение, только если x является нулевым
     formRef.current ??= evt.target.closest('form');
+    // formRef.current = formRef.current ?? evt.target.closest('form');
+
   }
   const handleInputChange = (evt: ChangeEvent<HTMLInputElement>, config = { customValidation: false }) => {
     const { name, value, validationMessage } = evt.target;
@@ -97,9 +97,14 @@ function useFormValid(values = {}) {
 
   useLayoutEffect(() => {
     const isValid = formRef.current?.checkValidity();
-    const isError = Object.keys(errorMessages).some(name => errorMessages);
+    // console.log('IsValid2', isValid);
+    
+    const isError = Object.keys(errorMessages).some(name => errorMessages[name]);
+    // console.log('isError', isError);
+    // console.log('errorMessages', errorMessages);
 
-    setFormIsValid(() => isValid! && !isError);
+
+    setFormIsValid(() => Boolean(isValid) && !isError);
   }, [inputValues, errorMessages])
 
   return {

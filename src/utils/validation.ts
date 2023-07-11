@@ -1,17 +1,4 @@
-// export type ValidationConfigType1 = {
-//   name : {
-//     pattern: RegExp;
-//     validationError: string;
-//     emptyError: string;
-//   },
-//   email : {
-//     pattern: RegExp;
-//     validationError: string;
-//     emptyError: string;
-//   }
-// }
-
-export type validationConfigKeyProps = 'name' | 'email'
+export type validationConfigKeyProps = 'name' | 'email' | 'password'
 export type validationConfigDataProps = {
   pattern: RegExp;
   validationError: string;
@@ -26,6 +13,11 @@ export const validationConfig: Record<validationConfigKeyProps, validationConfig
   'email': {
       pattern: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
       validationError: 'Email введен некорректно',
+      emptyError: 'Заполните это поле.',
+  },
+  'password': {
+      pattern: /^(?=.*?[a-z])(?=.*?[0-9]).{2,}$/,
+      validationError: 'Пароль должен содержать хотя бы одну цифру и минимум 2 символа',
       emptyError: 'Заполните это поле.',
   }
 }

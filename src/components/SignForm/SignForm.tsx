@@ -5,10 +5,10 @@ import InputForm from '../InputForm/InputForm';
 import ErrorMessage from '../UI/ErrorMessage/ErrorMessage';
 import FormButton from '../UI/FormButton/FormButton';
 import NavLinkButton from '../UI/NavLinkButton/NavLinkButton';
-import useFormValid from '../../hooks/useFormValid';
+import useFormValid, { IObjectValues } from '../../hooks/useFormValid';
 
 type SignFormProps = {
-  handleSubmit: (inputValues: { [index: string]: string}) => void;
+  handleSubmit: (inputValues: IObjectValues) => void;
   nameForm: string;
   message: string;
   isLoading: boolean;
@@ -25,12 +25,12 @@ function SignForm({ handleSubmit, nameForm, message, isLoading }: SignFormProps)
   } = useFormValid();
 
   useEffect(() => {
-    resetFormValues();
-  }, []);
+    resetFormValues()
+  }, [resetFormValues]);
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    handleSubmit(inputValues);
+    handleSubmit(inputValues!);
   };
 
   return (
@@ -38,41 +38,38 @@ function SignForm({ handleSubmit, nameForm, message, isLoading }: SignFormProps)
       <div className="sign-form__wrapper">
         {pathname === "/signup" && (
           <InputForm
-            value={inputValues.name}
+            value={inputValues?.name}
             onChange={(evt: ChangeEvent<HTMLInputElement>) => handleInputChange(evt, { customValidation: true })}
-            isError={errorMessages.name}
-            errorMessage={errorMessages.name}
+            isError={errorMessages?.name}
+            errorMessage={errorMessages?.name}
             labelName="Имя"
             typeWight="normal"
             inputType="text"
             name="name"
             autoComplete='on'
-            // pattern={''}
           />
         )}
         <InputForm
-          value={inputValues.email}
+          value={inputValues?.email}
           onChange={(evt: ChangeEvent<HTMLInputElement>) => handleInputChange(evt, { customValidation: true })}
-          isError={errorMessages.email}
-          errorMessage={errorMessages.email}
+          isError={errorMessages?.email}
+          errorMessage={errorMessages?.email}
           labelName="E-mail"
           typeWight="bold"
           inputType="email"
           name="email"
           autoComplete='on'
-          // pattern={''}
         />
         <InputForm
-          value={inputValues.password}
+          value={inputValues?.password}
           onChange={(evt: ChangeEvent<HTMLInputElement>) => handleInputChange(evt, { customValidation: true })}
-          isError={errorMessages.password}
-          errorMessage={errorMessages.password}
+          isError={errorMessages?.password}
+          errorMessage={errorMessages?.password}
           labelName="Пароль"
           typeWight="normal"
           inputType="password"
           name="password"
           autoComplete='current-password'
-          // pattern={''}
         />
       </div>
       <div className="sign-form__control-wrapper">

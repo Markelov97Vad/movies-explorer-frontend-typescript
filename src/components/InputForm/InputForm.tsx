@@ -3,10 +3,10 @@ import './InputForm.css';
 // import { ValidationConfigType1 } from '../../utils/validation';
 
 type InputFormProps = {
-  value: string;
+  value: string | undefined;
   onChange: (evt: ChangeEvent<HTMLInputElement>) => void;
-  isError: string;
-  errorMessage: string;
+  isError: string | undefined;
+  errorMessage: string | undefined;
   autoComplete: string;
   labelName: string;
   inputType: string;
