@@ -10,6 +10,8 @@ import SignIn from '../SignIn/SignIn';
 import { CONFLICT_CODE, SERVER_ERROR_CODE, SERVER_ERROR_SIGNIN_MESSAGE, SERVER_ERROR_SIGNUP_MESSAGE, UNAUTHORIZED_CODE, UNAUTHORIZED_ERROR_AUTH_MESSAGE, UNAUTHORIZED_ERROR_CHECKTOKEN_MESSAGE, UNAUTHORIZED_ERROR_CONFIRM_MESSAGE, UNAUTHORIZED_ERROR_EMAIL_MESSAGE } from '../../utils/constants';
 import { FormType } from '../Types/FormType';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Movies from '../Movies/Movies';
+import MoviesContextProvider from '../../contexts/MoviesContextProvider';
 // import Movies from '../Movies/Movies';
 
 export type CurrentUser = {
@@ -103,7 +105,11 @@ function App() {
       <CurrentUserContext.Provider value={{ loggetIn, currentUser }}>
         <Routes>
           <Route path='/' element={ <Main /> }/>
-          {/* <Route path='/movies'element={ <ProtectedRoute component={Movies} /> }  /> */}
+          <Route path='/movies' element={
+            <MoviesContextProvider>
+              <ProtectedRoute component={Movies} /> 
+            </MoviesContextProvider>
+          }/>
           {/* <ProtectedRoute component={Main} /> */}
             {/* <Movies/> */}
             {/* <Route path='/movies' element={ <Movies />} /> */}

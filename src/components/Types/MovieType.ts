@@ -1,4 +1,5 @@
 export type MovieType = {
+  _id?: string;
   country: string;
   created_at: string;
   description : string

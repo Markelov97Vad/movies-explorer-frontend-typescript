@@ -1,13 +1,8 @@
+import { ConfigApiType } from "../components/Types/ConfigApiType";
+import { MovieType } from "../components/Types/MovieType";
 import { IObjectValues } from "../hooks/useFormValid";
 
 export const MAIN_API_URL = 'http://localhost:3000';
-
-interface IConfigApi {
-  url: string,
-  headers: {
-    'Content-Type': string
-  }
-}
 
 // type RequestOptions = RequestInit & { json?: unknown; csrfToken?: string; prefixUrl?: string }
 
@@ -24,12 +19,12 @@ class MainApi {
     'Content-Type': string
   }
 
-  constructor( props: IConfigApi ) {
+  constructor( props: ConfigApiType ) {
     this._url = props.url;
     this._headers = props.headers;
   }
 
-  // _checkResponse(res: ) {
+  // _checkResponse(res: any) {
   //   if(res.ok) {
   //     return res.json()
   //   } else {
@@ -76,6 +71,86 @@ class MainApi {
     return fetch(`${this._url}/users/me`, {
       method: 'GET',
       credentials: 'include'
+    })
+    .then( res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(res.status)
+      }
+    })
+    .catch(err => console.log(err))
+  }
+
+  logout() {
+    return fetch(`${this._url}/signout`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: this._headers
+    })
+    .then( res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(res.status)
+      }
+    })
+    .catch(err => console.log(err))
+  }
+
+  setUserInfo({name, email} : IObjectValues) {
+    return fetch(`${this._url}/users/me`, {
+      method: 'PATCH',
+      credentials: 'include',
+      headers: this._headers,
+      body: JSON.stringify({ name , email})
+    })
+    .then( res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(res.status)
+      }
+    })
+    .catch(err => console.log(err))
+  }
+
+  getMoviesSavedByUser() {
+    return fetch(`${this._url}/movies`, {
+      method: 'GET',
+      credentials: 'include'
+    })
+    .then( res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(res.status)
+      }
+    })
+  }
+
+  addMovie(movie: MovieType) {
+    return fetch(`${this._url}/movies`, {
+      method: 'POST',
+      credentials: 'include',  
+      headers: this._headers,
+      body: JSON.stringify({...movie})
+    })
+    .then( res => {
+      if (res.ok) {
+        return res.json()
+      } else {
+        return Promise.reject(res.status)
+      }
+    })
+    .catch(err => console.log(err))
+  }
+
+  deleteMovie(movieId: string) {
+    return fetch(`${this._url}/movies/${movieId}`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: this._headers,
     })
     .then( res => {
       if (res.ok) {

@@ -6,7 +6,8 @@ export type IObjectValues = {
   name?: string;
   email?: string;
   password?: string;
-  // ckeckbox: ?
+  shortmovies?: boolean
+  keyword?: string
 }
 
 type ErrorMessageType = {
