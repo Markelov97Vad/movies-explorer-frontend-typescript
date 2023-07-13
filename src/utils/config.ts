@@ -1,3 +1,6 @@
+import { MovieType } from "../components/Types/MovieType";
+import { MOVIES_BASE_API_URL } from "./constants";
+
 export const iconsText: string[] = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB'];
 
 export const linksResources: {
@@ -35,3 +38,33 @@ export const loadingMessage: {
   signin: 'Вход..' ,
   profile: 'Сохранение..'
 };
+
+// type handleMovieDataFormatProps = {
+//   nameRU: string
+//   nameEN: string
+//   description: string
+//   country: string
+//   director: string
+//   duration: number
+//   year: number
+//   trailerLink: string
+//   image: string
+//   thumbnail: string
+//   movieId: number
+// }
+
+export function handleMovieDataFormat({ nameRU, nameEN, country, director, duration, year, image, id, description, trailerLink }: MovieType) {
+  return {
+      nameRU,
+      nameEN,
+      description,
+      country,
+      director,
+      duration,
+      year,
+      trailerLink,
+      image: String(MOVIES_BASE_API_URL + image.url),
+      thumbnail:  String(MOVIES_BASE_API_URL + image.formats.thumbnail.url),
+      movieId: id,
+  };
+}

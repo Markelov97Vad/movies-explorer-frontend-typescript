@@ -4,14 +4,21 @@ import SignTitle from "../SignTitle/SignTitle";
 import SignForm from "../SignForm/SignForm";
 import SignWrapper from "../Sign/Sign";
 import useUserContext from "../../hooks/useUserContext";
+import { IObjectValues } from "../../hooks/useFormValid";
 
-function SignIn({onLogin, message, isLoading}) {
+type SignInProps = {
+  onLogin: (inputValues: IObjectValues) => void;
+  message: string;
+  isLoading: boolean;
+}
+
+function SignIn({onLogin, message, isLoading}: SignInProps) {
   const { loggetIn } = useUserContext();
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const handleSubmit = (values) => {
-    onLogin(values);
+  const handleSubmit = (inputValues: IObjectValues) => {
+    onLogin(inputValues);
   };
 
   useEffect(() => {
@@ -20,7 +27,7 @@ function SignIn({onLogin, message, isLoading}) {
     } else {
       navigate(pathname);
     }
-  },[])
+  },[loggetIn, navigate, pathname])
 
   return (
     <SignWrapper>

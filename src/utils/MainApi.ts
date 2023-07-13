@@ -1,11 +1,8 @@
+import { NewMoviesTyps } from "../components/MoviesCardList/MoviesCardList";
 import { ConfigApiType } from "../components/Types/ConfigApiType";
-import { MovieType } from "../components/Types/MovieType";
 import { IObjectValues } from "../hooks/useFormValid";
 
 export const MAIN_API_URL = 'http://localhost:3000';
-
-// type RequestOptions = RequestInit & { json?: unknown; csrfToken?: string; prefixUrl?: string }
-
 
 export type UserData = {
   name: string,
@@ -129,7 +126,7 @@ class MainApi {
     })
   }
 
-  addMovie(movie: MovieType) {
+  addMovie(movie: NewMoviesTyps) {
     return fetch(`${this._url}/movies`, {
       method: 'POST',
       credentials: 'include',  

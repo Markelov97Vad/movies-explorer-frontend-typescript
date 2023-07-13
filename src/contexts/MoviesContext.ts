@@ -3,7 +3,7 @@ import { MovieType } from "../components/Types/MovieType";
 
 interface IMoviesContext {
   addUserMovie: (movie: MovieType) => void;
-  savedMoviesList: MovieType;
+  savedMoviesList: MovieType[];
   deleteUserMovie:(movieId: string) => void;
 
 }

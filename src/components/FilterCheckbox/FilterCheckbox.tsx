@@ -1,12 +1,12 @@
 import { ChangeEvent } from 'react';
 import './FilterCheckbox.css';
 
-type FilterCheckbox = {
+type FilterCheckboxProps = {
   handleChange: (evt: ChangeEvent<HTMLInputElement>) => void;
-  checked?: boolean;
+  checked?: boolean | null;
 }
 
-function FilterCheckbox({ handleChange, checked }: FilterCheckbox) {
+function FilterCheckbox({ handleChange, checked }: FilterCheckboxProps) {
   return ( 
     <div className='filter-checkbox filter-checkbox_size_l filter-checkbox_size_s'>
       <input 
@@ -16,7 +16,7 @@ function FilterCheckbox({ handleChange, checked }: FilterCheckbox) {
         onChange={handleChange} 
         title='Короткометражки'
         name='shortmovies'
-        checked={checked || undefined}
+        checked={checked || '' as unknown as undefined}
       />
       <label className='filter-checkbox__label' htmlFor='shortmovies'></label>
       <span className='filter-checkbox__text'>Короткометражки</span>

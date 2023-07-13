@@ -3,15 +3,15 @@ import { MoviesContext } from "./MoviesContext";
 import { mainApi } from "../utils/MainApi";
 import { MovieType } from "../components/Types/MovieType";
 
-type MoviesContextProvider = {
+type MoviesContextProviderProps = {
   children: ReactNode
 }
 
-function MoviesContextProvider({ children }: MoviesContextProvider) {
-  const [savedMoviesList, setSavedMoviesList] = useState<MovieType>([] as MovieType);
+function MoviesContextProvider({ children }: MoviesContextProviderProps) {
+  const [savedMoviesList, setSavedMoviesList] = useState<MovieType[]>([] as MovieType[]);
 
   useEffect(() => {
-    const movies = JSON.parse(localStorage.getItem('savedMovies') || '');
+    const movies = JSON.parse(localStorage.getItem('savedMovies') as string);
 
     if(movies) {
       setSavedMoviesList(movies);
@@ -28,14 +28,9 @@ function MoviesContextProvider({ children }: MoviesContextProvider) {
     }
   },[]);
 
-  // type yy = {
-  //   [index: string]: string
-  // }
-
   const addUserMovie = (movie: MovieType) => {
     const newSavedMoviesList = [...savedMoviesList, movie ];
-    setSavedMoviesList(newSavedMoviesList as MovieType);
-    // setSavedMoviesList(() => [...savedMoviesList, movie ]);
+    setSavedMoviesList(newSavedMoviesList as MovieType[]);
     localStorage.setItem('savedMovies', JSON.stringify(newSavedMoviesList));
   }
 

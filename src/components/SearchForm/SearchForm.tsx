@@ -1,7 +1,7 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import useFormValid, { IObjectValues } from '../../hooks/useFormValid';
-import { VALIDATION_INPUT_ERROR_MESSAGE } from '../../utils/constants';
 import './SearchForm.css';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import useFormValid from '../../hooks/useFormValid';
+import { VALIDATION_INPUT_ERROR_MESSAGE } from '../../utils/constants';
 import SearchButton from '../UI/SearchButton/SearchButton';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import useResultCache, { setResultCacheType } from '../../hooks/useResultCache';
@@ -17,7 +17,7 @@ type SearchFormProps  = {
 }
 
 function SearchForm({ handleSubmitMoviesSearch, handleCheckboxShortmovies, valueCache = false }: SearchFormProps) {
-  const [validationError, setValidationError] = useState('');
+  const [validationError, setValidationError] = useState<string>('');
   const [visible, setVisible] = useState(false)
   const { 
     inputValues,

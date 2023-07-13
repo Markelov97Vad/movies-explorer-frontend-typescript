@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import useUserContext from "../../hooks/useUserContext";
 import { useLocation, useNavigate } from "react-router-dom";
+
+import useUserContext from "../../hooks/useUserContext";
 import Sign from "../Sign/Sign";
 import SignTitle from "../SignTitle/SignTitle";
 import SignForm from "../SignForm/SignForm";
 import { IObjectValues } from "../../hooks/useFormValid";
-import { FormType } from "../Types/FormType";
 
 type SignUpProps = {
   onRegistration: (inputValues: IObjectValues) => void;
@@ -24,7 +24,7 @@ function SignUp({ onRegistration , message, isLoading}: SignUpProps) {
     } else {
       navigate(pathname);
     }
-  },[])
+  },[loggetIn, navigate, pathname])
 
   const handleSubmit = (inputValues: IObjectValues) => {
     onRegistration(inputValues)

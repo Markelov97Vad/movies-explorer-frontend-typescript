@@ -1,6 +1,5 @@
-import { ChangeEvent, FormEvent } from 'react';
+import { ChangeEvent } from 'react';
 import './InputForm.css';
-// import { ValidationConfigType1 } from '../../utils/validation';
 
 type InputFormProps = {
   value: string | undefined;
@@ -12,7 +11,6 @@ type InputFormProps = {
   inputType: string;
   typeWight: string;
   name: string;
-  // pattern: string
 }
 
 function InputForm({ value, onChange, isError, errorMessage, autoComplete, labelName, inputType, typeWight, name} : InputFormProps) {
@@ -28,7 +26,6 @@ function InputForm({ value, onChange, isError, errorMessage, autoComplete, label
         id={name}
         autoComplete={autoComplete}
         required
-        // pattern={''}
       />
       <span className='form-input__focus-span'></span>
       <span className={`form-input__error ${isError ? 'form-input__error_active' : ''}`}>{errorMessage}</span>

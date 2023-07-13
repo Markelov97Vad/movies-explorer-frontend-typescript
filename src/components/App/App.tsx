@@ -6,13 +6,10 @@ import Main from '../pages/Main/Main';
 import { mainApi } from '../../utils/MainApi';
 import SignUp from '../SignUp/SignUp';
 import { IObjectValues } from '../../hooks/useFormValid';
-import SignIn from '../SignIn/SignIn';
 import { CONFLICT_CODE, SERVER_ERROR_CODE, SERVER_ERROR_SIGNIN_MESSAGE, SERVER_ERROR_SIGNUP_MESSAGE, UNAUTHORIZED_CODE, UNAUTHORIZED_ERROR_AUTH_MESSAGE, UNAUTHORIZED_ERROR_CHECKTOKEN_MESSAGE, UNAUTHORIZED_ERROR_CONFIRM_MESSAGE, UNAUTHORIZED_ERROR_EMAIL_MESSAGE } from '../../utils/constants';
-import { FormType } from '../Types/FormType';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Movies from '../Movies/Movies';
 import MoviesContextProvider from '../../contexts/MoviesContextProvider';
-// import Movies from '../Movies/Movies';
 
 export type CurrentUser = {
   email: string;
@@ -61,8 +58,7 @@ function App() {
       .then((res) => {
         setLoggetIn(true);
         setCurrentUser(res);
-        // console.log(res);
-        // navigate("/movies", { replace: true });
+        navigate("/movies", { replace: true });
       })
       .catch((err) => {
         if (err === UNAUTHORIZED_CODE) {
@@ -103,19 +99,21 @@ function App() {
     
     <div className="root">
       <CurrentUserContext.Provider value={{ loggetIn, currentUser }}>
-        <Routes>
-          <Route path='/' element={ <Main /> }/>
-          <Route path='/movies' element={
-            <MoviesContextProvider>
-              <ProtectedRoute component={Movies} /> 
-            </MoviesContextProvider>
-          }/>
-          {/* <ProtectedRoute component={Main} /> */}
-            {/* <Movies/> */}
-            {/* <Route path='/movies' element={ <Movies />} /> */}
-          <Route path='/signup' element={<SignUp onRegistration={handleSignUp}  message={message} isLoading={isLoading}/>} />
-          {/* <Route path='/signip' element={<SignIn onLogin={handleSignIn}  message={message} isLoading={isLoading}/>} /> */}
-        </Routes>
+        { isAppLoaded && 
+          <Routes>
+            <Route path='/' element={ <Main /> }/>
+            <Route path='/movies' element={
+              <MoviesContextProvider>
+                <ProtectedRoute component={Movies} /> 
+              </MoviesContextProvider>
+            }/>
+            {/* <ProtectedRoute component={Main} /> */}
+              {/* <Movies/> */}
+              {/* <Route path='/movies' element={ <Movies />} /> */}
+            <Route path='/signup' element={<SignUp onRegistration={handleSignUp}  message={message} isLoading={isLoading}/>} />
+            {/* <Route path='/signip' element={<SignIn onLogin={handleSignIn}  message={message} isLoading={isLoading}/>} /> */}
+          </Routes>
+        }
       </CurrentUserContext.Provider>
     </div>
   );

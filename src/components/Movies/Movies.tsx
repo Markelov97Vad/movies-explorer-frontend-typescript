@@ -12,39 +12,19 @@ import useResultCache from '../../hooks/useResultCache';
 import { mainApi } from '../../utils/MainApi';
 import moviesApi from '../../utils/MoviesApi';
 import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList, { NewMoviesTyps } from '../MoviesCardList/MoviesCardList';
 
-// type MovieType = {
-//   country: string;
-//   created_at: string;
-//   description : string
-//   director: string;
-//   duration: number;
-//   id: number;
-//   image: {
-//     url: string
-//   };
-//   nameEN: string;
-//   nameRU: string;
-//   trailerLink: string;
-//   updated_at: string;
-//   year: string;
-// }
-
-type handleSubmitMoviesSearchProps = {
-  keyword?: string;
-  shortmovies?: boolean
-}
-type HandleMoviesType = {
+type HandleMoviesFetchType = {
   keyword?: string;
   shortmovies?: boolean;
 }
 
 function Movies() {
-  const [moviesList, setMoviesList] = useState(() => {
-    const movies = JSON.parse(localStorage.getItem('moviesList') || '');
+  const [moviesList, setMoviesList] = useState<MovieType[]>(() => {
+    const movies = JSON.parse(localStorage.getItem('moviesList') as string);
     return movies ? movies : [];
   });
-  const [renderMoviesList, setRenderMoviesList] = useState<MovieType>([]);
+  const [renderMoviesList, setRenderMoviesList] = useState<MovieType[]>([]);
   const [isLoading, setIsloading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const { handleMoviesFilter } = useMovieSearch(setErrorMessage);
@@ -54,14 +34,14 @@ function Movies() {
 
 
   // рендер результата поиска 
-  const handleResultRender = (keyword: string , movies: MovieType, shortmovies: boolean) => {
+  const handleResultRender = (keyword: string , movies: MovieType[], shortmovies: boolean) => {
     const resultSearchMovie = handleMoviesFilter(keyword, movies, shortmovies);
 
     setRenderMoviesList(resultSearchMovie);
     setResultCache('moviesCache', { movies: resultSearchMovie });
   }
   // запросы к BeatfilmMoviesApi
-  const handleMoviesFetch = ({ keyword , shortmovies} : HandleMoviesType) => {
+  const handleMoviesFetch = ({ keyword , shortmovies} : HandleMoviesFetchType) => {
     setIsloading(true);
 
     moviesApi
@@ -71,7 +51,7 @@ function Movies() {
         localStorage.setItem('moviesList', JSON.stringify(movies));
         return movies
       })
-      .then((movies: MovieType )=> handleResultRender(String(keyword), movies, Boolean(shortmovies)))
+      .then((movies: MovieType[] )=> handleResultRender(String(keyword), movies, Boolean(shortmovies)))
       .catch((err) => {
         setErrorMessage(MOVIES_REQUEST_ERROR_MESSAGE);
         console.log(`Не удалось загрузить фильмы. Ошибка: ${err}`)
@@ -95,7 +75,7 @@ function Movies() {
     }
   }
 
-  const handleMovieSave = (movie: MovieType) => {
+  const handleMovieSave = (movie: NewMoviesTyps) => {
     return mainApi
       .addMovie(movie)
       .then(addUserMovie)
@@ -118,12 +98,12 @@ function Movies() {
     }
     const errorCache = getResultCache('errors');
     errorCache?.error && setErrorMessage(errorCache.error);
-  }, [getResultCache])
+  }, [getResultCache, moviesList.length])
 
   useEffect(() => {
     const keywordCache = getResultCache('searchValueCache')
     handleStorageData({ keyword: keywordCache?.keyword })
-  }, [])
+  }, [getResultCache, handleStorageData])
 
   useEffect(() => {
     errorMessage && setResultCache('errors', { error: errorMessage })
@@ -137,7 +117,7 @@ function Movies() {
           handleCheckboxShortmovies={handleCheckboxShortmovies}
           valueCache={true}
         />
-        {/* <MoviesCardList
+        <MoviesCardList
           place='movies'
           moviesList={renderMoviesList}
           savedMoviesList={savedMoviesList}
@@ -145,7 +125,7 @@ function Movies() {
           handleMovieSave={handleMovieSave}
           handleMovieDelete={handleMovieDelete}
           errorMessage={errorMessage}
-        /> */}
+        />
       </main>
       <Footer />
     </>
