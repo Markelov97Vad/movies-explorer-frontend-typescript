@@ -1,9 +1,8 @@
 import './ButtonCross.css';
 
 type ButtonCrossProps = {
-  handleMenuOpen: () => void;
-  place: string;
-
+  handleMenuOpen?: () => void;
+  place?: string;
 }
 
 function ButtonCross({ handleMenuOpen, place }: ButtonCrossProps) {

@@ -13,7 +13,7 @@ type SearchFormProps  = {
     shortmovies: boolean;
   }) => void;
   handleCheckboxShortmovies: (shortmovies: boolean) => void;
-  valueCache: boolean;
+  valueCache?: boolean;
 }
 
 function SearchForm({ handleSubmitMoviesSearch, handleCheckboxShortmovies, valueCache = false }: SearchFormProps) {
@@ -28,9 +28,6 @@ function SearchForm({ handleSubmitMoviesSearch, handleCheckboxShortmovies, value
   } = useFormValid();
   const { setResultCache, getResultCache } = useResultCache();
 
-  // type handleValuesCacheProps = {
-  //   [index: string]: string | undefined | boolean
-  // }
   // валидация ввода
   const handleValuesCache = (inputValues: setResultCacheType) => {
     if(valueCache) {

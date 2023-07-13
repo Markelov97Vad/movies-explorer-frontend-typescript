@@ -1,8 +1,8 @@
 import './ButtonLike.css'
 
 type ButtonLikeProps = {
-  isOwner: boolean;
-  handleClick: () => void;
+  isOwner?: boolean;
+  handleClick?: () => void;
 }
 
 function ButtonLike({ isOwner, handleClick}: ButtonLikeProps) {

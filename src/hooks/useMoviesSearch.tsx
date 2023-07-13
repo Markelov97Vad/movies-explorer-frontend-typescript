@@ -1,12 +1,6 @@
 import { MovieType } from "../components/Types/MovieType";
 import { MOVIES_SEARCH_ERROR_MESSAGE, NUMBER_OF_SHORTMOVIES } from "../utils/constants";
 
-// type MoviesSearchType = {
-//   keyword?: string;
-//   movies?: string;
-//   shortmovies?: boolean;
-// }
-
 function useMovieSearch(handleError: (val: string) => void) {
   const checkError = (result: MovieType[]) => {
     if (result.length === 0) {

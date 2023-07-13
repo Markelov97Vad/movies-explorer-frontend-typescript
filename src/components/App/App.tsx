@@ -107,6 +107,11 @@ function App() {
                 <ProtectedRoute component={Movies} /> 
               </MoviesContextProvider>
             }/>
+            <Route path='/saved-movies' element={
+              <MoviesContextProvider>
+                <ProtectedRoute component={Movies} /> 
+              </MoviesContextProvider>
+            }/>
             {/* <ProtectedRoute component={Main} /> */}
               {/* <Movies/> */}
               {/* <Route path='/movies' element={ <Movies />} /> */}
