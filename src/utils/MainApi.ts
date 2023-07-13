@@ -1,3 +1,4 @@
+import { CurrentUser } from "../components/App/App";
 import { NewMoviesTyps } from "../components/MoviesCardList/MoviesCardList";
 import { ConfigApiType } from "../components/Types/ConfigApiType";
 import { IObjectValues } from "../hooks/useFormValid";
@@ -29,7 +30,7 @@ class MainApi {
   //   }
 
   // register({ name, email, password } props: UserData) {
-  register({ name , email, password } : IObjectValues): Promise<Response> {
+  register({ name , email, password } : IObjectValues): Promise<CurrentUser> {
     return fetch(`${this._url}/signup`, {
       method: 'POST',
       headers: this._headers,
@@ -46,7 +47,7 @@ class MainApi {
     .catch(err => console.log(err))
   }
 
-  authorize( {email, password}: IObjectValues): Promise<Response> {
+  authorize( {email, password}: IObjectValues): Promise<CurrentUser> {
     return fetch(`${this._url}/signin`, {
       method: 'POST',
       credentials: 'include',

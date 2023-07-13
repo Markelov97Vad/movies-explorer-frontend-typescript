@@ -24,10 +24,7 @@ function MoviesCard({ movie, handleClick, Button, isOwner, place}: MoviesCardPro
   const { pathname } = useLocation();
   const { image, nameRU, duration, trailerLink } = movie;
   const imageUrlForMovies = MOVIES_BASE_API_URL + image.url;
-  // const imageUrlForSavedMovies = image;
-  // console.log('imageUrlForMovies',imageUrlForMovies);
-  // console.log('imageUrlForSavedMovies', imageUrlForSavedMovies);
-  
+  const imageUrlForSavedMovies = image;
   
   const getTimeFromMinutes = ((time: number) => {
     const minutes = time % 60;
@@ -39,8 +36,8 @@ function MoviesCard({ movie, handleClick, Button, isOwner, place}: MoviesCardPro
   return ( 
     <article className='movies-card'>
       <a className='movies-card__link' href={trailerLink} target='_blank' rel="noreferrer">
-        {/* <img className='movies-card__image' src={pathname === '/movies' ? String(imageUrlForMovies) : String(imageUrlForSavedMovies)} alt={nameRU} /> */}
-        <img className='movies-card__image' src={String(imageUrlForMovies)} alt={nameRU} />
+        <img className='movies-card__image' src={pathname === '/movies' ? String(imageUrlForMovies) : String(imageUrlForSavedMovies)} alt={nameRU} />
+        {/* <img className='movies-card__image' src={String(imageUrlForMovies)} alt={nameRU} /> */}
       </a>
       <div className='movies-card__info'>
         <div className='movies-card__wrapper'>

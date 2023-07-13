@@ -8,7 +8,7 @@ type NavLinkButtonProps = {
   color: string;
   link: string;
   isNotFoundPage?: boolean;
-  onSignOut: () => void | null;
+  onSignOut: () => Promise<void> | null;
 }
 
 function NavLinkButton({ text , place, type, link = '', color, onSignOut, isNotFoundPage = false }: NavLinkButtonProps) {
