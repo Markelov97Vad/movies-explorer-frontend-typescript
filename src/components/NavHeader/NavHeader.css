@@ -1,0 +1,20 @@
+.navigation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 676px;
+}
+
+.navigation-header__list {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation-header {
+    display: none;
+  }
+}

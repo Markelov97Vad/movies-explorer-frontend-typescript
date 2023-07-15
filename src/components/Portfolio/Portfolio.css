@@ -1,0 +1,36 @@
+.portfolio {
+  padding: 0 70px 112px;
+  background-color: inherit;
+}
+
+.portfolio__title {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  margin: 0 0 50px;
+  color: #A0A0A0;
+}
+
+@media screen and (max-width: 768px) {
+  .portfolio {
+    padding-inline: 50px;
+    padding-bottom: 80px;
+  }
+
+  .portfolio__title {
+    margin-bottom: 48px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .portfolio {
+    padding-inline: 14px;
+    padding-bottom: 70px;
+  }
+
+  .portfolio__title {
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 40px;
+  }
+}

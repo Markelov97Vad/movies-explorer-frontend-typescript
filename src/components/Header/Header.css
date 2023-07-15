@@ -1,0 +1,31 @@
+.header {
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: max-content minmax(min-content, 676px);
+  padding: 18px 70px;
+  align-items: center;
+  column-gap: 250px;
+  box-sizing: border-box;
+}
+
+.header_type_landing {
+  background-color: #DDDEE3;
+}
+
+.header_type_main {
+  background-color: inherit;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding-inline: 30px;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .header {
+    padding-inline: 14px;
+  }
+}

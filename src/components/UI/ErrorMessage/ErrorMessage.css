@@ -1,0 +1,46 @@
+.error-message {
+  text-align: center;
+  font-weight: 400;
+}
+
+.error-message_place_movie-card-list {
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.error-message_place_search-form {
+  position: absolute;
+  font-size: 13px;
+  line-height: 18px;
+  color: #EE3465;
+  top: 40px;
+  left: 0;
+  right: 0;
+}
+
+.error-message_place_profile {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+  color: #EE3465;
+  z-index: 4;
+}
+
+.error-message_place_sign-form {
+  font-size: 11px;
+  line-height: 13px;
+  color: #EE3465;
+  margin-bottom: 17px;
+}
+
+@media screen and (max-width: 414px) {
+  .error-message_place_movie-card-list {
+    font-size: 12px;
+  }
+
+  .error-message_place_search-form {
+    font-size: 11px;
+  }
+}

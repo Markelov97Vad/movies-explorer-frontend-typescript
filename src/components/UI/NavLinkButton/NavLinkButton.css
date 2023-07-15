@@ -1,0 +1,86 @@
+.navigation-link-sign {
+  text-decoration: none;
+}
+
+.navigation-link-sign__button {
+  cursor: pointer;
+  transition: opacity .2s ease-in;
+  border: none;
+  background-color: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation-link-sign__button_place_header {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.navigation-link-sign__button_place_sign {
+  margin-left: 6px;
+}
+
+.navigation-link-sign__button_place_not-found {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.navigation-link-sign__button_place_profile {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.navigation-link-sign__button_type_link:hover {
+  opacity: .7;
+}
+
+.navigation-link-sign__button_type_button {
+  display: block;
+  background-color: #3456F3;
+  border: none;
+  border-radius: 3px;
+  padding: 8px 20px;
+}
+
+.navigation-link-sign__button_type_button:hover {
+  opacity: .8;
+}
+
+.navigation-link-sign__button_color_black {
+  color: #000;
+}
+
+.navigation-link-sign__button_color_white {
+  color: #fff;
+}
+
+.navigation-link-sign__button_color_blue {
+  color: #3456F3;
+}
+
+.navigation-link-sign__button_color_red {
+  color: #EE3465;
+}
+
+@media screen and (max-width: 414px) {
+  .navigation-link-sign__button_place_header {
+    font-size: 10px;
+  }
+
+  .navigation-link-sign__button_type_button {
+    padding: 5px 12px;
+  }
+
+  .navigation-link-sign__button_place_not-found {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .navigation-link-sign__button_place_profile {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

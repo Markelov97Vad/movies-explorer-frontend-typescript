@@ -1,0 +1,15 @@
+.navigation-sign__list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  justify-content: flex-end;
+  gap: 30px;
+}
+
+@media screen and (max-width: 414px) {
+  .navigation-sign__list {
+    gap: 14px
+  }
+}

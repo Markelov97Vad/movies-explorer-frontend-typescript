@@ -1,0 +1,62 @@
+.button-cross {
+  background: url(../../../images/close-button.svg) no-repeat;
+  background-position: center;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity .2s ease-in;
+}
+
+.button-cross_place_card {
+  background-size: 10px 10px;
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+}
+
+.button-cross_place_menu {
+  width: 22px;
+  height: 22px;
+  margin: 27px 27px 0 0;
+  justify-self: end;
+}
+
+.button-cross_place_menu:hover {
+  opacity: .8;
+}
+
+.movies-card__info:hover .button-cross_place_card {
+  opacity: 1;
+}
+.movies-card__info:hover .button-cross_place_card:hover {
+  opacity: .5;
+}
+  /* iPad screen */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1366px) {
+  .button-cross_place_card {
+    opacity: 1;
+  }
+}
+  /* mobile portrait */
+@media only screen and (orientation: portrait) and (min-device-width: 414px) and (max-device-height: 926px) and (-webkit-device-pixel-ratio: 3){
+	.button-cross_place_card {
+    opacity: 1;
+  }
+}
+  /* mobile landscape*/
+@media only screen and (orientation: landscape) and (min-device-width: 414px) and (max-device-height: 926px) and (-webkit-device-pixel-ratio: 3){
+	.button-cross_place_card {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .button-cross_place_menu {
+    margin-top: 20px;
+    margin-right: 20px;
+  }
+
+  .button-cross_place_card {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,24 @@
+.sign-title {
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+}
+
+.sign-title__text {
+  margin: 38px 0 41px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+@media screen and (max-width: 414px) {
+  .sign-title {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sign-title__text {
+    margin-top: 50px;
+    margin-bottom: 80px;
+  }
+}

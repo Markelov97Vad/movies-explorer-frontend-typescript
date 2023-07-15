@@ -1,0 +1,42 @@
+.project-info__title {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+  max-width: 550px;
+  margin:0 0 26px;
+  padding: 0;
+}
+
+.project-info__subtitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  max-width: 550px;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .project-info__title {
+    margin-bottom: 22px;
+  }
+
+  .project-info__subtitle {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 414px){
+  .project-info__title {
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 16px;
+  }
+
+  .project-info__subtitle {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}

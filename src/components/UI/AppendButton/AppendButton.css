@@ -1,0 +1,24 @@
+.append-button {
+  min-width: 320px;
+  height: 36px;
+  border: none;
+  background-color: #F4F4F4;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: center;
+  padding: 0;
+  transition: opacity .2s ease-in;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+}
+
+.append-button:hover {
+  opacity: .8;
+}
+
+@media screen and (max-width: 414px) {
+  .append-button {
+    min-width: 240px;
+  }
+}
