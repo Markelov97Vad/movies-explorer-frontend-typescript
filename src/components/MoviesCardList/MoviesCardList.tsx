@@ -1,4 +1,5 @@
 import "./MoviesCardList.css";
+
 import Preloader from "../Preloader/Preloader";
 import AppendButton from "../UI/AppendButton/AppendButton";
 import ErrorMessage from "../UI/ErrorMessage/ErrorMessage";
@@ -7,31 +8,7 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import { MovieType } from "../Types/MovieType";
 import { handleMovieDataFormat } from "../../utils/config";
 import useMoviesCardsRender from "../../hooks/useMoviesCardsRender";
-
-export type NewMoviesTyps = {
-  nameRU: string,
-  nameEN: string,
-  description: string,
-  country: string,
-  director: string,
-  duration: number,
-  year: string,
-  trailerLink: string,
-  image: string,
-  thumbnail:  string,
-  movieId?: number,
-}
-
-type MoviesCardListProps = {
-  isLoading: boolean;
-  place?: string;
-  moviesList: MovieType[]
-  savedMoviesList: MovieType[]
-  handleMovieSave: (movieData: NewMoviesTyps) => void;
-  handleMovieDelete: (id: string) => void;
-  errorMessage: string;
-}
-
+import { MoviesCardListProps } from "../Types/props.types";
 
 function MoviesCardList({ isLoading, place, moviesList = [], handleMovieSave, savedMoviesList = [], handleMovieDelete, errorMessage }: MoviesCardListProps) {
   const { renderMovies, renderMoviesCard, renderButton } = useMoviesCardsRender(moviesList);
@@ -43,7 +20,9 @@ function MoviesCardList({ isLoading, place, moviesList = [], handleMovieSave, sa
           <ul className='movies-card-list__container'>
             {renderMovies.map((movie : MovieType) => {
               const movieData = handleMovieDataFormat(movie);
-              const isOwner = savedMoviesList.some(savedMovie => savedMovie.movieId === movie.id);
+              const isOwner = savedMoviesList.some(savedMovie => {
+                return savedMovie.movieId === movie.id
+              });
               const handleSave = () => {
                 handleMovieSave(movieData)
               }
@@ -66,7 +45,6 @@ function MoviesCardList({ isLoading, place, moviesList = [], handleMovieSave, sa
                     movie={movie}
                     handleClick={handleClick}
                     Button={ButtonLike}
-                    // savedMoviesList={savedMoviesList}
                     isOwner={isOwner}
                   />
               </li>

@@ -1,11 +1,7 @@
-import Logo from '../UI/Logo/Logo';
 import './SignTitle.css';
+import Logo from '../UI/Logo/Logo';
 
-type SignTitleProps = {
-  text: string
-}
-
-function SignTitle({text}: SignTitleProps) {
+function SignTitle({ text }: { text: string}) {
   return ( 
     <div className='sign-title'>
       <Logo />

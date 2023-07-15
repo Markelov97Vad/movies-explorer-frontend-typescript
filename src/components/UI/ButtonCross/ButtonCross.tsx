@@ -1,14 +1,9 @@
 import './ButtonCross.css';
+import { ButtonCrossProps } from '../../Types/props.types';
 
-type ButtonCrossProps = {
-  handleMenuOpen?: () => void;
-  place?: string;
-}
-
-function ButtonCross({ handleMenuOpen, place }: ButtonCrossProps) {
+function ButtonCross({ handleClick, place }: ButtonCrossProps) {
   return ( 
-    <button onClick={handleMenuOpen} type='button' className={`button-cross button-cross_place_${place}`}></button>
-
+    <button onClick={handleClick} type='button' className={`button-cross button-cross_place_${place}`}></button>
    );
 }
 

@@ -1,17 +1,5 @@
-import { ChangeEvent } from 'react';
 import './InputForm.css';
-
-type InputFormProps = {
-  value: string | undefined;
-  onChange: (evt: ChangeEvent<HTMLInputElement>) => void;
-  isError: string | undefined;
-  errorMessage: string | undefined;
-  autoComplete: string;
-  labelName: string;
-  inputType: string;
-  typeWight: string;
-  name: string;
-}
+import { InputFormProps } from '../Types/props.types';
 
 function InputForm({ value, onChange, isError, errorMessage, autoComplete, labelName, inputType, typeWight, name} : InputFormProps) {
   return ( 

@@ -1,13 +1,10 @@
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { MoviesContext } from "./MoviesContext";
 import { mainApi } from "../utils/MainApi";
 import { MovieType } from "../components/Types/MovieType";
+import { ChildrenPropsType } from "../components/Types/props.types";
 
-type MoviesContextProviderProps = {
-  children: ReactNode
-}
-
-function MoviesContextProvider({ children }: MoviesContextProviderProps) {
+function MoviesContextProvider({ children }: ChildrenPropsType) {
   const [savedMoviesList, setSavedMoviesList] = useState<MovieType[]>([] as MovieType[]);
 
   useEffect(() => {

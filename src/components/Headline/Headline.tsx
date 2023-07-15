@@ -1,12 +1,8 @@
 import './Headline.css';
 
-type HeadlineProps = {
-  title: string;
-}
-
-function Headline(props: HeadlineProps) {
+function Headline({ title }: { title: string}) {
   return ( 
-    <h2 className='headline'>{props.title}</h2>
+    <h2 className='headline'>{title}</h2>
    );
 }
 

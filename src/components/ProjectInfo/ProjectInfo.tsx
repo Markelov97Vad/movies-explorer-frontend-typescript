@@ -1,9 +1,5 @@
+import { ProjectInfoProps } from '../Types/props.types';
 import './ProjectInfo.css'
-
-type ProjectInfoProps = {
-  title: string;
-  subtitle: string;
-}
 
 function ProjectInfo({title, subtitle}: ProjectInfoProps) {
   return ( 

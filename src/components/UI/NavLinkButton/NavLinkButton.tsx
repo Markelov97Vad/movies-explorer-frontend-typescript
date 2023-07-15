@@ -1,15 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import './NavLinkButton.css';
-
-type NavLinkButtonProps = {
-  text: string;
-  place: string;
-  type: string;
-  color: string;
-  link: string;
-  isNotFoundPage?: boolean;
-  onSignOut: () => Promise<void> | null;
-}
+import { NavLinkButtonProps } from '../../Types/props.types';
 
 function NavLinkButton({ text , place, type, link = '', color, onSignOut, isNotFoundPage = false }: NavLinkButtonProps) {
   const navigate = useNavigate();

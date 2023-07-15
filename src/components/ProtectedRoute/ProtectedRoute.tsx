@@ -1,21 +1,14 @@
 import { Navigate } from "react-router-dom";
 import useUserContext from "../../hooks/useUserContext";
+import { ProtectedRouteProps } from "../Types/props.types";
 
-
-
-export type ProtectedRouteProps = {
-  // component: ComponentType;
-  authenticationPath: string;
-  outlet: JSX.Element;
-}
-
-function ProtectedRoute({authenticationPath, outlet}: ProtectedRouteProps) {
+function ProtectedRoute({authenticationPath, children}: ProtectedRouteProps) {
   const { loggetIn } = useUserContext();
 
   if(!loggetIn) {
     return <Navigate to={authenticationPath} replace />
   }
-  return outlet;
+  return children;
 }
 
 export default ProtectedRoute;

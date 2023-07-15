@@ -1,14 +1,7 @@
 import MoviesCard from "../MoviesCard/MoviesCard";
-import { MovieType } from "../Types/MovieType";
+import { SavedMoviesCardListProps } from "../Types/props.types";
 import ButtonCross from "../UI/ButtonCross/ButtonCross";
 import ErrorMessage from "../UI/ErrorMessage/ErrorMessage";
-
-type SavedMoviesCardListProps = {
-  place?: string;
-  moviesList: MovieType[] ;
-  errorMessage: string;
-  handleMovieDelete: (id: string) => void;
-}
 
 function SavedMoviesCardList({ place, moviesList = [], errorMessage, handleMovieDelete }: SavedMoviesCardListProps) {
   return ( 
@@ -29,7 +22,6 @@ function SavedMoviesCardList({ place, moviesList = [], errorMessage, handleMovie
                   movie={movie} 
                   Button={ButtonCross}
                   handleClick={handleClick}
-                  handleMovieDelete={handleMovieDelete}
                   place='card'
                 />
             </li>

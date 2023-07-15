@@ -4,10 +4,10 @@ import SignTitle from "../SignTitle/SignTitle";
 import SignForm from "../SignForm/SignForm";
 import SignWrapper from "../Sign/Sign";
 import useUserContext from "../../hooks/useUserContext";
-import { IObjectValues } from "../../hooks/useFormValid";
+import { InputValuesType } from "../Types/InputValuesType";
 
 type SignInProps = {
-  onLogin: (inputValues: IObjectValues) => void;
+  onLogin: (inputValues: InputValuesType) => void;
   message: string;
   isLoading: boolean;
 }
@@ -17,7 +17,7 @@ function SignIn({onLogin, message, isLoading}: SignInProps) {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
-  const handleSubmit = (inputValues: IObjectValues) => {
+  const handleSubmit = (inputValues: InputValuesType) => {
     onLogin(inputValues);
   };
 

@@ -1,10 +1,5 @@
 import './ResourceLink.css'
-
-type ResourceLinkProps = {
-  href: string;
-  place: string;
-  text: string;
-}
+import { ResourceLinkProps } from '../../Types/props.types';
 
 function ResourceLink({ place, href, text}: ResourceLinkProps) {
   return ( 

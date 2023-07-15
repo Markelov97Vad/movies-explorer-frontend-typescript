@@ -1,15 +1,8 @@
-import { CurrentUser } from "../components/App/App";
-import { NewMoviesTyps } from "../components/MoviesCardList/MoviesCardList";
 import { ConfigApiType } from "../components/Types/ConfigApiType";
-import { IObjectValues } from "../hooks/useFormValid";
-
-export const MAIN_API_URL = 'http://localhost:3000';
-
-export type UserData = {
-  name: string,
-  email: string,
-  password?: string
-}
+import { InputValuesType } from "../components/Types/InputValuesType";
+import { NewMovieTypes } from "../components/Types/NewMovieTyps";
+import { CurrentUser } from "../components/Types/currentUser.types";
+import { MAIN_API_URL } from "./constants";
 
 class MainApi {
   private _url: string;
@@ -22,21 +15,12 @@ class MainApi {
     this._headers = props.headers;
   }
 
-  // _checkResponse(res: any) {
-  //   if(res.ok) {
-  //     return res.json()
-  //   } else {
-  //     return Promise.reject(res.status)
-  //   }
-
-  // register({ name, email, password } props: UserData) {
-  register({ name , email, password } : IObjectValues): Promise<CurrentUser> {
+  register({ name , email, password } : InputValuesType): Promise<CurrentUser> {
     return fetch(`${this._url}/signup`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({name, email, password})
     })
-    // .then( res => this._checkResponse(res))
     .then( res => {
       if (res.ok) {
         return res.json()
@@ -47,14 +31,13 @@ class MainApi {
     .catch(err => console.log(err))
   }
 
-  authorize( {email, password}: IObjectValues): Promise<CurrentUser> {
+  authorize({ email, password }: InputValuesType): Promise<CurrentUser> {
     return fetch(`${this._url}/signin`, {
       method: 'POST',
       credentials: 'include',
       headers: this._headers,
       body: JSON.stringify({ email, password })
     })
-    // .then(res => this._checkResponse(res));
     .then( res => {
       if (res.ok) {
         return res.json()
@@ -96,7 +79,7 @@ class MainApi {
     .catch(err => console.log(err))
   }
 
-  setUserInfo({name, email} : IObjectValues) {
+  setUserInfo({ name, email }: InputValuesType) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       credentials: 'include',
@@ -127,7 +110,7 @@ class MainApi {
     })
   }
 
-  addMovie(movie: NewMoviesTyps) {
+  addMovie(movie: NewMovieTypes) {
     return fetch(`${this._url}/movies`, {
       method: 'POST',
       credentials: 'include',  

@@ -2,22 +2,13 @@ import "./Profile.css";
 import { FormEvent, useContext, useEffect, useRef, useState } from "react";
 
 import Header from "../Header/Header";
-import useFormValid, { IObjectValues } from "../../hooks/useFormValid";
+import useFormValid from "../../hooks/useFormValid";
 import FormButton from "../UI/FormButton/FormButton";
 import NavLinkButton from "../UI/NavLinkButton/NavLinkButton";
 import { UNAUTHORIZED_ERROR_EMAIL_MESSAGE } from "../../utils/constants";
 import ErrorMessage from "../UI/ErrorMessage/ErrorMessage";
 import { CurrentUserContext } from "../../contexts/currentUserContext";
-
-export type ProfileProps = {
-  handleUserInfoChange: (userData: IObjectValues) => Promise<void>;
-  isErrorRequest: boolean;
-  isEditing: boolean;
-  handleOpenConfirm: () => void;
-  message: string;
-  onSignOut: () => Promise<void>;
-  isLoading: boolean;
-}
+import { ProfileProps } from "../Types/props.types";
 
 function Profile({ handleUserInfoChange, isErrorRequest , isEditing, handleOpenConfirm, message, onSignOut, isLoading }: ProfileProps) {
   const [error, setError] = useState<string>('');

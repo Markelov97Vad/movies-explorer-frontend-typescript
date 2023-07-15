@@ -1,22 +1,14 @@
 import { ChangeEvent, useCallback, useLayoutEffect, useRef, useState } from "react";
 import { validationConfig, validationConfigKeyProps } from "../utils/validation";
-
-export type IObjectValues = {
-  // [index: string]: string
-  name?: string;
-  email?: string;
-  password?: string;
-  shortmovies?: boolean
-  keyword?: string
-}
+import { InputValuesType } from "../components/Types/InputValuesType";
 
 type ErrorMessageType = {
   [index: string]: string;
 }
 
 function useFormValid() {
-  const [inputValues, setInputValues] = useState<IObjectValues | null>(null);
-  const [checkboxValues, setCheckboxValues] = useState<IObjectValues | null>(null)
+  const [inputValues, setInputValues] = useState<InputValuesType | null>(null);
+  const [checkboxValues, setCheckboxValues] = useState<InputValuesType | null>(null)
   const [errorMessages, setErrorMessages] = useState<ErrorMessageType>({});
   const [formIsValid, setFormIsValid] = useState<boolean>(false);
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -45,10 +37,7 @@ function useFormValid() {
     setCheckboxValues(newValues)
     setErrorMessages(newError);
     setFormIsValid(newIsValid);
-    // console.log('newIsValid',newIsValid);
-    
   }, [setInputValues, setErrorMessages, setFormIsValid]);
-
 
   const handleErrorMessage = (name: string, message: string) => {
     setErrorMessages(current => ({
@@ -59,19 +48,16 @@ function useFormValid() {
 
   function handleDefaultValidation(name: string, validationMessage: string) {
     const isValid = formRef.current?.checkValidity();
-    // console.log('isValid!',isValid);
     handleErrorMessage(name, validationMessage)
     // оператор утверждения, что значение не равно null
     setFormIsValid(isValid!);
   }
 
   const handleCustomValidation = (name: validationConfigKeyProps, value: string) => {
-    // console.debug("name", name)
     const { pattern, validationError, emptyError } = validationConfig[name];
 
     const match = pattern.test(value);
     const message = !value ? emptyError : match ? '' : validationError;
-    // неправельный тип
     handleErrorMessage(name, message);
   }
 
@@ -88,8 +74,6 @@ function useFormValid() {
     handleSaveFormRef(evt);
 
     if (config.customValidation) {
-      // const nameType: keyof ValidationConfigType1 | string = name
-      // let nameType: validationConfigKeyProps = name as unknown as validationConfigKeyProps;
       handleCustomValidation(name as unknown as validationConfigKeyProps, value)
     } else {
       handleDefaultValidation(name, validationMessage);
@@ -98,12 +82,7 @@ function useFormValid() {
 
   useLayoutEffect(() => {
     const isValid = formRef.current?.checkValidity();
-    // console.log('IsValid2', isValid);
-    
     const isError = Object.keys(errorMessages).some(name => errorMessages[name]);
-    // console.log('isError', isError);
-    // console.log('errorMessages', errorMessages);
-
 
     setFormIsValid(() => Boolean(isValid) && !isError);
   }, [inputValues, errorMessages])

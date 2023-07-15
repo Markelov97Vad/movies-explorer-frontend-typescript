@@ -1,11 +1,8 @@
 import { ReactNode } from 'react';
 import './Sign.css';
+import { ChildrenPropsType } from '../Types/props.types';
 
-type SignProps = {
-  children: ReactNode
-}
-
-function Sign({children}: SignProps) {
+function Sign({children}: ChildrenPropsType) {
   return ( 
     <main className="sign">
       <section className='sign__wrapper'>

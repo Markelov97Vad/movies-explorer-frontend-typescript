@@ -1,12 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import './FormButton.css';
 import { loadingMessage } from '../../../utils/config';
-
-type FormButtonProps = {
-  text : string;
-  isLoading: boolean;
-  disabled: boolean;
-}
+import { FormButtonProps } from '../../Types/props.types';
 
 function FormButton({ text, isLoading, disabled }: FormButtonProps) {
   const { pathname } = useLocation();

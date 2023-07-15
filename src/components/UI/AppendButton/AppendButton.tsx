@@ -1,9 +1,5 @@
 import './AppendButton.css'
-
-type AppendButtonProps = {
-  onClick: () => void;
-  text: string;
-}
+import { AppendButtonProps } from '../../Types/props.types';
 
 function AppendButton({ onClick , text }: AppendButtonProps) {
   return ( 

@@ -2,24 +2,19 @@ import './App.css';
 import { useCallback, useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/currentUserContext';
-import Main from '../pages/Main/Main';
+import Main from '../Main/Main';
 import { mainApi } from '../../utils/MainApi';
 import SignUp from '../SignUp/SignUp';
-import { IObjectValues } from '../../hooks/useFormValid';
 import { CONFLICT_CODE, SERVER_ERROR_CODE, SERVER_ERROR_SIGNIN_MESSAGE, SERVER_ERROR_SIGNOUT_MESSAGE, SERVER_ERROR_SIGNUP_MESSAGE, SUCCESS_MESSAGE, UNAUTHORIZED_CODE, UNAUTHORIZED_ERROR_AUTH_MESSAGE, UNAUTHORIZED_ERROR_CHECKTOKEN_MESSAGE, UNAUTHORIZED_ERROR_CONFIRM_MESSAGE, UNAUTHORIZED_ERROR_EMAIL_MESSAGE } from '../../utils/constants';
-import ProtectedRoute, { ProtectedRouteProps } from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Movies from '../Movies/Movies';
 import MoviesContextProvider from '../../contexts/MoviesContextProvider';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import SignIn from '../SignIn/SignIn';
 import Profile from '../Profile/Profile';
-
-export type CurrentUser = {
-  email: string;
-  password: string;
-  name?: string;
-  _id?: string;
-}
+import { CurrentUser } from '../Types/currentUser.types';
+import { InputValuesType } from '../Types/InputValuesType';
+import { ProtectedRouteProps } from '../Types/props.types';
 
 function App() {
   const [isAppLoaded, setIsAppLoaded] = useState<boolean>(false);
@@ -32,8 +27,7 @@ function App() {
 
   const navigate = useNavigate();
 
-
-  const handleSignUp = (inputValues: IObjectValues) => {
+  const handleSignUp = (inputValues: InputValuesType) => {
     setIsLoading(true)
     mainApi
       .register(inputValues)
@@ -56,7 +50,7 @@ function App() {
 
   }
 
-  const handleSignIn = (inputValue: IObjectValues) => {
+  const handleSignIn = (inputValue: InputValuesType) => {
     setMessage('')
     setIsLoading(true);
     return mainApi
@@ -101,7 +95,7 @@ function App() {
     handleTockenCheck();
   }, [handleTockenCheck]);
 
-  const handleUserInfoChange = (userData: IObjectValues) => {
+  const handleUserInfoChange = (userData: InputValuesType) => {
     setMessage('')
     setIsLoading(true);
     return mainApi
@@ -148,7 +142,7 @@ function App() {
     setIsEditing(true)
   }
 
-  const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'outlet'> = {
+  const defaultProtectedRouteProps: Omit<ProtectedRouteProps, 'children'> = {
     authenticationPath: '/',
   };
 
@@ -163,7 +157,7 @@ function App() {
               <MoviesContextProvider>
                 <ProtectedRoute 
                   {...defaultProtectedRouteProps}
-                  outlet={ <Movies />}
+                  children={ <Movies />}
                 /> 
               </MoviesContextProvider>
             }/>
@@ -171,7 +165,7 @@ function App() {
               <MoviesContextProvider>
                 <ProtectedRoute 
                   {...defaultProtectedRouteProps}
-                  outlet={ <SavedMovies />}
+                  children={ <SavedMovies />}
                   /> 
               </MoviesContextProvider>
             }/>
@@ -179,7 +173,7 @@ function App() {
               <MoviesContextProvider>
                 <ProtectedRoute 
                   {...defaultProtectedRouteProps} 
-                  outlet={
+                  children={
                     <Profile 
                       handleUserInfoChange={handleUserInfoChange}
                       isErrorRequest={IsErrorRequest}
@@ -192,9 +186,6 @@ function App() {
                   }/> 
               </MoviesContextProvider>
             }/>
-            {/* <ProtectedRoute component={Main} /> */}
-              {/* <Movies/> */}
-              {/* <Route path='/movies' element={ <Movies />} /> */}
             <Route path='/signup' element={<SignUp onRegistration={handleSignUp}  message={message} isLoading={isLoading}/>} />
             <Route path='/signin' element={<SignIn onLogin={handleSignIn}  message={message} isLoading={isLoading}/>} />
           </Routes>

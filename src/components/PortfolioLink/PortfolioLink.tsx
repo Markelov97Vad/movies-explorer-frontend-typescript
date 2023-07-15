@@ -1,9 +1,5 @@
+import { PortfolioLinkProps } from '../Types/props.types';
 import './PortfolioLink.css'
-
-type PortfolioLinkProps = {
-  link: string;
-  text: string;
-}
 
 function PortfolioLink({ link, text }: PortfolioLinkProps) {
   return ( 

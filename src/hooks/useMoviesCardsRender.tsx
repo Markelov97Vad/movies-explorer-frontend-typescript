@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { NewMoviesTyps } from "../components/MoviesCardList/MoviesCardList";
 import useResize from "./useResize";
 import { MovieType } from "../components/Types/MovieType";
 

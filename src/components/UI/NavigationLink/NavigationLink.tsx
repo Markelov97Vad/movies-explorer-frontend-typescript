@@ -1,11 +1,6 @@
-import { NavLink } from 'react-router-dom';
 import './NavigationLink.css'
-
-type NavigationLinkProps = {
-  path: string;
-  place: string;
-  text: string;
-}
+import { NavLink } from 'react-router-dom';
+import { NavigationLinkProps } from '../../Types/props.types';
 
 function NavigationLink({ path , place, text} : NavigationLinkProps) {
   return ( 

@@ -1,10 +1,5 @@
-import { ChangeEvent } from 'react';
 import './FilterCheckbox.css';
-
-type FilterCheckboxProps = {
-  handleChange: (evt: ChangeEvent<HTMLInputElement>) => void;
-  checked?: boolean | null;
-}
+import { FilterCheckboxProps } from '../Types/props.types';
 
 function FilterCheckbox({ handleChange, checked }: FilterCheckboxProps) {
   return ( 

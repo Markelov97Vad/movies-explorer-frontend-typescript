@@ -12,7 +12,8 @@ import useResultCache from '../../hooks/useResultCache';
 import { mainApi } from '../../utils/MainApi';
 import moviesApi from '../../utils/MoviesApi';
 import SearchForm from '../SearchForm/SearchForm';
-import MoviesCardList, { NewMoviesTyps } from '../MoviesCardList/MoviesCardList';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import { NewMovieTypes } from '../Types/NewMovieTyps';
 
 type HandleMoviesFetchType = {
   keyword?: string;
@@ -21,7 +22,7 @@ type HandleMoviesFetchType = {
 
 function Movies() {
   const [moviesList, setMoviesList] = useState<MovieType[]>(() => {
-    const movies = JSON.parse(localStorage.getItem('moviesList') as string);
+    const movies: MovieType[] = JSON.parse(localStorage.getItem('moviesList') as string);
     return movies ? movies : [];
   });
   const [renderMoviesList, setRenderMoviesList] = useState<MovieType[]>([]);
@@ -31,7 +32,6 @@ function Movies() {
   const { keyword, handleStorageData } = useSearchData();
   const { addUserMovie, savedMoviesList, deleteUserMovie } = useMoviesContext();
   const { setResultCache, getResultCache } = useResultCache();
-
 
   // рендер результата поиска 
   const handleResultRender = (keyword: string , movies: MovieType[], shortmovies: boolean) => {
@@ -75,7 +75,7 @@ function Movies() {
     }
   }
 
-  const handleMovieSave = (movie: NewMoviesTyps) => {
+  const handleMovieSave = (movie: NewMovieTypes) => {
     return mainApi
       .addMovie(movie)
       .then(addUserMovie)

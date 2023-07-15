@@ -1,18 +1,12 @@
-import { ChangeEvent, FormEvent, useEffect } from 'react';
 import './SignForm.css'
+import { ChangeEvent, FormEvent, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import InputForm from '../InputForm/InputForm';
 import ErrorMessage from '../UI/ErrorMessage/ErrorMessage';
 import FormButton from '../UI/FormButton/FormButton';
 import NavLinkButton from '../UI/NavLinkButton/NavLinkButton';
-import useFormValid, { IObjectValues } from '../../hooks/useFormValid';
-
-type SignFormProps = {
-  handleSubmit: (inputValues: IObjectValues) => void;
-  nameForm: string;
-  message: string;
-  isLoading: boolean;
-}
+import useFormValid from '../../hooks/useFormValid';
+import { SignFormProps } from '../Types/props.types';
 
 function SignForm({ handleSubmit, nameForm, message, isLoading }: SignFormProps) {
   const { pathname } = useLocation();

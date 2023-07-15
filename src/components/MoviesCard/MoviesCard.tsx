@@ -1,24 +1,8 @@
 import './MoviesCard.css';
+
 import { useLocation } from 'react-router-dom';
-import { ComponentType } from 'react';
-import { MovieType } from '../Types/MovieType';
 import { MOVIES_BASE_API_URL } from '../../utils/constants';
-
-type ButtonProps = {
-  handleClick?: () => void;
-  handleMenuOpen?: () => void
-  isOwner?: boolean;
-  place?: string;
-}
-
-type MoviesCardProps = {
-  movie: MovieType;
-  handleClick: () => void;
-  Button: ComponentType<ButtonProps>;
-  isOwner?: boolean;
-  place?: string;
-  handleMovieDelete?: (id: string) => void
-}
+import { MoviesCardProps } from '../Types/props.types';
 
 function MoviesCard({ movie, handleClick, Button, isOwner, place}: MoviesCardProps) {
   const { pathname } = useLocation();
@@ -37,7 +21,6 @@ function MoviesCard({ movie, handleClick, Button, isOwner, place}: MoviesCardPro
     <article className='movies-card'>
       <a className='movies-card__link' href={trailerLink} target='_blank' rel="noreferrer">
         <img className='movies-card__image' src={pathname === '/movies' ? String(imageUrlForMovies) : String(imageUrlForSavedMovies)} alt={nameRU} />
-        {/* <img className='movies-card__image' src={String(imageUrlForMovies)} alt={nameRU} /> */}
       </a>
       <div className='movies-card__info'>
         <div className='movies-card__wrapper'>
