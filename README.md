@@ -1,46 +1,68 @@
-# Getting Started with Create React App
+<h1 align="center">Дипломный проект: "Movies Explorer" (frontend)</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+  <a href="https://marsello.diploma.nomoredomains.rocks">
+    <img width="575" alt="Основной функционал приложения" src="./src/images/screen-project.gif">
+  </a>
+</div>
 
-## Available Scripts
+_____
 
-In the project directory, you can run:
+<a name="project-description"><h2>1. Описание проекта</h2></a>
+Версия дипломный проекта "Movies Explorer" с использованием TypeScript. Версия на JavaScript (https://github.com/Markelov97Vad/movies-explorer-frontend)
+____
 
-### `npm start`
+<b>Ссылки на проект:</b>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Backend: https://api.marsello.diploma.nomoredomains.rocks
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Макет: https://www.figma.com/file/KhjjZmPqyEVbgjxeQj7EWs/Diploma-for-YP?type=design&node-id=932%3A3320&t=oV7cdh9gN2dlHcsx-1
 
-### `npm test`
+<a name="summary">
+  <details>
+    <summary>Оглавление</summary>
+    <ol>
+      <li><a href="#project-description">Описание проекта</a></li>
+      <li><a href="#technologies">Стек технологий</a></li>
+      <li><a href="#installation">Установка и запуск приложения в локальном репозитории, эксплуатация</a></li>
+      <li><a href="#functionality">Функционал</a></li>
+      <li><a href="#enhancement">Планы по улучшению</a></li>
+    </ol>
+  </details>
+</a>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<a name="technologies"><h2>2. Стек технологий</h2></a>
 
-### `npm run build`
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Ract-router](https://camo.githubusercontent.com/4f9d20f3a284d2f6634282f61f82a62e99ee9906537dc9859decfdc9efbb51ec/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f52656163745f526f757465722d4341343234353f7374796c653d666f722d7468652d6261646765266c6f676f3d72656163742d726f75746572266c6f676f436f6c6f723d7768697465)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescr
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white) 
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+____
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<div align="right">(<a href="#summary">к оглавлению</a>)</div>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<a name="installation"><h2>3. Установка и запуск приложения в локальном репозитории, эксплуатация</h2></a>
+1. `git clone https://github.com/Markelov97Vad/movies-explorer-frontend.git` - клонировать репозиторий на свое устройство (HTTPS)
+2. `npm i` - установить зависимости
+3. `npm run start` - запустить приложение
 
-### `npm run eject`
+<b>NB!</b> Для корректной работы в локальном репозитории следует также клонировать <a href="https://github.com/Markelov97Vad/movies-explorer-api">backend</a> и запустить в первую очередь его командой `npm run dev` (после установки зависимостей)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<div align="right">(<a href="#summary">к оглавлению</a>)</div>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<a name="functionality"><h2>4. Функционал</h2></a>
+- Регистрация и авторизация пользователей с редактированием личных данных
+- Поиск фильмов с фильтрацией и рандомной генерацией вывода карточек, добавлением в избранные и удалением
+- Валидация личных данных
+- Адаптивная верстка под все виды устройств
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<div align="right">(<a href="#summary">к оглавлению</a>)</div>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<a name="enhancement"><h2>5. Планы по улучшению</h2></a>
+- Оптимизация лишних ререндеров
+- Рефакторинг и "разгрузка" компонента `App`
+- Кроссбраузерность
